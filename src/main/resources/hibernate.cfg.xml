@@ -22,6 +22,7 @@
 <!--      Mapping entity file  -->
         <mapping class="com.shova.model.Teacher"/>
         <mapping class="com.shova.model.Department"/>
+        <mapping class="com.shova.model.Address"/>
 
     </session-factory>
  </hibernate-configuration>

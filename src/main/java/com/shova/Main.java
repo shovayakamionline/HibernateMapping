@@ -1,5 +1,5 @@
 package com.shova;
-
+import com.shova.model.Address;
 import com.shova.model.Department;
 import com.shova.model.Teacher;
 import org.hibernate.Session;
@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 //        manyToOne();
-        oneToMany();
+//        oneToMany();
+        oneToOne();
     }
 
     public static void manyToOne() {
@@ -76,4 +77,30 @@ public class Main {
         session.persist(department);
         t.commit();
     }
+
+    public static void oneToOne(){
+        System.out.println("Maven + Hibernate + SQL One to One Mapping Annotations");
+
+        SessionFactory factory = new Configuration().configure().buildSessionFactory();
+        Session session = factory.openSession();
+
+        Transaction t = session.beginTransaction();
+        Address a1 = new Address("27th street","NYC","NY",11103);
+        Address a2 = new Address("28th street","Buffalo","NY",15803);
+
+        Teacher t1 = new Teacher("1000","MHaseeb");
+        Teacher t2 = new Teacher("2220","Shahparan");
+        t1.setAddress(a1);
+        t2.setAddress(a2);
+
+
+
+        session.persist(a1);
+        session.persist(a2);
+        session.persist(t1);
+        session.persist(t2);
+
+        t.commit();
+    }
+
 }

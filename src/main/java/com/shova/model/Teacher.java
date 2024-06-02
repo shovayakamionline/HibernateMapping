@@ -17,6 +17,18 @@ public class Teacher implements Serializable {
     private String salary;
     private String teacherName;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @ManyToOne
     @JoinColumn(name = "fk_dep")
     private Department department;
