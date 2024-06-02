@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Table
@@ -21,6 +22,17 @@ public class Department implements Serializable {
         super();
         this.deptId = deptId;
         this.deptName = deptName;
+    }
+
+    @OneToMany(targetEntity= Teacher.class, cascade = {CascadeType.ALL})
+    private List<Teacher> teacherList;
+
+    public List<Teacher> getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(List<Teacher> teacherList) {
+        this.teacherList = teacherList;
     }
 
     public Department() {

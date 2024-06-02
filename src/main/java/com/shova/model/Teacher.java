@@ -31,6 +31,11 @@ public class Teacher implements Serializable {
     public Teacher() {
     }
 
+    public Teacher(String salary, String teacherName) {
+        this.salary = salary;
+        this.teacherName = teacherName;
+    }
+
     public Teacher(String salary, String teacherName, Department department) {
         super();
         this.salary = salary;
@@ -79,8 +84,6 @@ public class Teacher implements Serializable {
     }
 
     @Override
-
-
     public int hashCode() {
         return Objects.hash(teacherId, salary, teacherName, department);
     }
