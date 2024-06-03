@@ -1,10 +1,9 @@
 package com.shova.model;
-
 import jakarta.persistence.*;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table
@@ -18,32 +17,46 @@ public class Teacher implements Serializable {
     private String teacherName;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Address address;
+//
+//    public Address getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
+    @ManyToMany(targetEntity = Cohort.class)
+    private Set<Cohort> cohort;
 
-    public Address getAddress() {
-        return address;
+    public Teacher() {
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public Set<Cohort> getCohort() {
+        return cohort;
+    }
+    public void setCohort(Set<Cohort> cohort) {
+        this.cohort = cohort;
+    }
+    public Teacher(String salary, String teacherName, Set<Cohort> cohort) {
+        this.salary = salary;
+        this.teacherName = teacherName;
+        this.cohort = cohort;
+    }
+
+    public Teacher(String salary, String teacherName) {
+        this.salary = salary;
+        this.teacherName = teacherName;
     }
 
     @ManyToOne
-    @JoinColumn(name = "fk_dep")
+   // @JoinColumn(name = "fk_dep")
     private Department department;
 
     public Teacher(int teacherId, String salary, String teacherName) {
         super();
         this.teacherId = teacherId;
-        this.salary = salary;
-        this.teacherName = teacherName;
-    }
-
-    public Teacher() {
-    }
-
-    public Teacher(String salary, String teacherName) {
         this.salary = salary;
         this.teacherName = teacherName;
     }
